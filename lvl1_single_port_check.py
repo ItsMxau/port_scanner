@@ -27,8 +27,8 @@ def scan_port(host: str, port: int, timeout: float = 1.0) -> bool:
     sock.settimeout(timeout) # So it doesn't hang forever on filtered/dead port
 
     try:
-        result = sock.connect_ex((host, port))
-        return result == 0
+        result = sock.connect_ex((host, port)) # Try connection, store result
+        return result == 0 # 0 means success, returns True, else return False
     finally:
         # Always close socket, even if something went wrong above
         sock.close()
